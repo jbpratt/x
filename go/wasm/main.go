@@ -5,17 +5,21 @@ import (
 	"syscall/js"
 )
 
-func main() {
-	c := make(chan bool)
-	js.Global().Set("printMsg", js.FuncOf(printMsg))
-	<-c
+var c chan bool
+
+func init() {
+	c = make(chan bool)
 }
 
-func printMsg(this js.Value, inputs []js.Value) interface{} {
-	msg := inputs[0].String()
-	doc := js.Global().Get("document")
-	p := doc.Call("createElement", "p")
-	p.Set("innerHTML", msg)
-	doc.Get("body").Call("appendChild", p)
-	return nil
+func main() {
+	js.Global().Set("printMsg", js.FuncOf(printMsg))
+	<-c
+	println("here")
+}
+
+func printMsg(this js.Value, inputs []js.Value) {
+	callback := inputs[len(inputs)-1:][0]
+	message := inputs[0].String()
+
+	callback.Invoke(js.Null(), "Did you say "+message)
 }
