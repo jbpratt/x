@@ -1,0 +1,50 @@
+<nav 
+    class="header navbar navbar-dark navbar-expand-lg px-3" 
+    role="navigation"
+>
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/">Strims</a>
+    </div>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <!--{rustlers}-->
+            <!--{viewers}-->
+        </ul>
+        <ul class="navbar-nav">
+            <!--{chat buttons}-->
+        </ul>
+    </div>
+    <form class="form-inline pr-3">
+        <select class="form-control" name="service"> 
+            <option value="angelthump">AngelThump</option>
+            <option value="facebook">Facebook</option>
+            <option value="m3u8">m3u8</option>
+            <option value="mixer">Mixer</option>
+            <option value="smashcast">Smashcast</option>
+            <option value="twitch" selected="selected">Twitch</option>
+            <option value="twitch-vod">Twitch (VOD)</option>
+            <option value="ustream">Ustream</option>
+            <option value="vaughn">Vaughn</option>
+            <option value="youtube">YouTube</option>
+            <option value="youtube-playlist">YouTube (playlist)</option>
+            <option value="advanced">Advanced</option>
+        </select>
+        <div class="input-group">
+            <input class="form-control" value="Stream/Video ID"/>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">Go</button>
+            </span>
+        </div>
+    </form>
+    <div class="btn-group">
+        <!-- 
+            if user logged in
+            <a class="btn btn-default navbar-btn" href="/profile">
+                Profile
+            </a>
+        -->
+        <a class="btn btn-default navbar-btn" href="/login">
+            <span class="oi" data-glyph="account-login"></span>
+        </a>
+    </div>
+</nav>
