@@ -1,34 +1,23 @@
 // +build js,wasm
+// compile: GOOS=js GOARCH=wasm go build -o main.wasm ./main.go
 package main
 
 import (
-	"fmt"
-	"syscall/js"
-	"time"
+	"log"
+
+	"github.com/gopherjs/websocket"
 )
 
-var doc js.Value
-
-func init() {
-	doc = js.Global().Get("document")
-}
-
-func test(done chan string, div js.Value) {
-	for i := 0; i < 10; i++ {
-		time.Sleep(time.Millisecond * 500)
-		node := doc.Call("createElement", "p")
-		node.Set("innerText", i)
-		div.Call("appendChild", node)
-	}
-	done <- "goroutine finished"
-}
+/*func test(div js.Value, s string) {
+	node := doc.Call("createElement", "p")
+	node.Set("innerText", s)
+	div.Call("appendChild", node)
+}*/
 
 func main() {
-	div := doc.Call("getElementById", "target")
-
-	done := make(chan string)
-	go test(done, div)
-
-	msg := <-done
-	fmt.Println(msg)
+	_, err := websocket.Dial("wss://chat.strims.gg/ws")
+	if err != nil {
+		log.Fatal(err)
+	}
+	select {}
 }
