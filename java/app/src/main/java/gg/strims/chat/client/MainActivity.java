@@ -4,19 +4,27 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
-
+import android.widget.ListView;
 import android.os.Bundle;
+import org.json.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 
 public class MainActivity extends AppCompatActivity {
     private WebSocketClient client;
+    private MessageAdapter messageAdapter;
+    private ListView messagesView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        messageAdapter = new MessageAdapter(this);
+        messagesView = (ListView) findViewById(R.id.messages_view);
+        messagesView.setAdapter(messageAdapter);
+
         connect();
     }
 
@@ -37,7 +45,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onMessage(String s) {
-                Log.i("websocket",s);
+                try {
+                    JSONObject obj = new JSONObject(s);
+                    //String user = obj.getJSONObject("msg").getString("user");
+                    Log.i("websocket",obj.names().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
