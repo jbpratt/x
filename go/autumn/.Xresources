@@ -1,0 +1,29 @@
+*background:                      #25252c
+*foreground:                      #ffffff
+*cursorColor:                     #ffffff
+
+*color0:                          #25252c
+*color8:                          #9abfcd
+*color1:                          #9abfcd
+*color9:                          #9abfcd
+*color2:                          #679fb4
+*color10:                         #679fb4
+*color3:                          #357f9b
+*color11:                         #357f9b
+*color4:                          #036082
+*color12:                         #036082
+*color5:                          #024c68
+*color13:                         #024c68
+*color6:                          #5e8d87
+*color14:                         #01394e
+*color7:                          #b3cfd9
+*color15:                         #b3cfd9
+
+URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
+
+
+
+URxvt.depth:                      32
+URxvt.background:                 [100]#25252c
+URxvt*background:                 #25252c
+URxvt*foreground:                 #ffffff
